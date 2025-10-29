@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "not-enough-durability",
+  "version": "${version}",
+  "name": "Not Enough Durability",
+  "description": "Shows durability on the HUD and notifies you when tools or armor are about to break",
+  "authors": [
+    "Thijs226"
+  ],
+  "contact": {
+    "homepage": "https://github.com/Thijs226/not-enough-durability",
+    "sources": "https://github.com/Thijs226/not-enough-durability"
+  },
+  "license": "MIT",
+  "icon": "assets/not-enough-durability/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.thijs226.notenoughdurability.NotEnoughDurability"
+    ],
+    "client": [
+      "com.thijs226.notenoughdurability.client.NotEnoughDurabilityClient"
+    ]
+  },
+  "mixins": [
+    "not-enough-durability.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": ">=1.20",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
