@@ -1,0 +1,64 @@
+name: Release Mod
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'gradle'
+        
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Build with Gradle
+      run: ./gradlew build --no-daemon
+      
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: build/libs/*.jar
+        body: |
+          ## Not Enough Durability v${{ steps.get_version.outputs.VERSION }}
+          
+          ### Features
+          - HUD display for item durability
+          - Custom pause screen when items are about to break
+          - Configurable notifications (text and sound)
+          - 40+ configuration options
+          - Multiple HUD styles
+          - Commands for easy configuration
+          
+          ### Installation
+          1. Install [Fabric Loader](https://fabricmc.net/use/)
+          2. Download [Fabric API](https://modrinth.com/mod/fabric-api)
+          3. Place both Fabric API and this mod in your `mods` folder
+          4. Launch Minecraft
+          
+          ### Compatibility
+          - Minecraft: 1.20.x - 1.21.x
+          - Mod Loader: Fabric
+          - Java: 17+
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
