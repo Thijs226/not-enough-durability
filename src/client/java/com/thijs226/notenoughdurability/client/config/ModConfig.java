@@ -17,23 +17,56 @@ public class ModConfig {
     public boolean showDurabilityHud = true;
     public boolean showArmorDurability = true;
     public boolean showToolDurability = true;
+    public boolean showOffhandDurability = true;
+    public boolean showDurabilityBar = true;
+    public boolean showDurabilityPercentage = false;
+    public boolean showItemIcon = false;
     public int hudX = 5;
     public int hudY = 5;
+    public float hudScale = 1.0f;
+    public int hudTextColor = 0xFFFFFF;
+    
+    // HUD Style
+    public String hudStyle = "SIMPLE"; // SIMPLE, DETAILED, COMPACT, ICON_ONLY
+    public boolean hudBackground = false;
+    public int hudBackgroundColor = 0x80000000;
+    public boolean hudBorder = false;
     
     // Notification Settings
     public boolean enableNotifications = true;
     public boolean showTextNotifications = true;
     public boolean playSoundNotifications = true;
     public int lowDurabilityThreshold = 10;
+    public int criticalDurabilityThreshold = 5;
+    public boolean repeatNotifications = false;
+    public int notificationRepeatInterval = 100; // ticks
+    public float soundVolume = 0.5f;
+    public float soundPitch = 1.0f;
+    
+    // Warning Levels
+    public boolean useWarningLevels = true;
+    public int warningLevel1Threshold = 50; // Yellow
+    public int warningLevel2Threshold = 25; // Orange
+    public int warningLevel3Threshold = 10; // Red
     
     // Game Pause Settings (Singleplayer)
     public boolean pauseOnLowDurability = false;
     public int pauseThreshold = 1;
+    public boolean useCustomPauseScreen = true;
+    public boolean pauseOnCritical = true;
     
     // Multiplayer-specific Settings
     public boolean enableInMultiplayer = true;
     public boolean showHudInMultiplayer = true;
     public boolean notificationsInMultiplayer = true;
+    
+    // Advanced Settings
+    public boolean monitorMainHandOnly = false;
+    public boolean monitorOffHand = true;
+    public boolean monitorHotbarItems = false;
+    public boolean ignoreInfiniteDurability = true;
+    public boolean flashLowDurabilityItems = true;
+    public int flashInterval = 10; // ticks
     
     public static ModConfig load() {
         if (CONFIG_FILE.exists()) {
