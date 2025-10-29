@@ -61,7 +61,7 @@ public class DurabilityWarningScreen extends Screen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         // Render dark background
-        this.renderBackground(context, mouseX, mouseY, delta);
+        this.renderBackground(context);
         
         // Get item name and stats
         String itemName = item.getName().getString();
